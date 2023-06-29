@@ -26,6 +26,7 @@
     "spinnies": "^0.5.1",
     "syntax-error": "^1.4.0",
     "url-regex": "^5.0.0",
+    "wa-sticker-formatter": "^4.4.4",
     "yargs": "^17.7.2"
   }
 }

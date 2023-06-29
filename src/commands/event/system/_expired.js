@@ -11,8 +11,8 @@ handler.before = async function (m) {
         vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${wm},;;;\nFN:${wm},\nitem1.TEL;waid=${
           m.sender.split("@")[0]
         }:${m.sender.split("@")[0]}\nitem1.X-ABLabell:Ponsel\nEND:VCARD`,
-        jpegThumbnail: require("fs").readFileSync("./src/logo.jpg"),
-        thumbnail: require("fs").readFileSync("./src/logo.jpg"),
+        jpegThumbnail: require("fs").readFileSync("./media/logo.jpg"),
+        thumbnail: require("fs").readFileSync("./media/logo.jpg"),
         sendEphemeral: true,
       },
     },

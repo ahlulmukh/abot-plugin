@@ -1,6 +1,6 @@
 ﻿let fetch = require("node-fetch");
 let handler = (m) => m;
-let levelling = require("../lib/levelling");
+let levelling = require("../../../lib/lib.levelling");
 handler.before = async function (m) {
   let user = global.db.data.users[m.sender];
   let users = Object.entries(global.db.data.users).map(([key, value]) => {

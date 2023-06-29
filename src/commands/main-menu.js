@@ -8,25 +8,23 @@ let totalf = Object.values(global.plugins).filter(
 ).length;
 let nom = 1;
 const defaultMenu = {
-  before: `
-╭──( *Info Pengguna * )
-║- Your Limit : *%limit*
-│- Role : *%role*
-║- Level : *%level*
-│- Money : Rp.*%money*
-┗━━━━━━━━━━━━━━━━━━⬣
-╭──( *Info Bot * )
-║- Uptime : *%uptime*
-│- User terdaftar : *%rtotalreg user*
-║- Belum terdaftar : *%totalreg user*
-│- Database : *MongoDB*
-║- Total Fitur : *%totalf*
-┗━━━━━━━━━━━━━━━━━━⬣
+  before: `𝗜𝗡𝗙𝗢 𝗣𝗘𝗡𝗚𝗚𝗨𝗡𝗔
+🎫Limit: *%limit*
+🥋Role: *%role*
+🎚Level: *%level*
+💵Money: *%money*
+
+𝗜𝗡𝗙𝗢 𝗕𝗢𝗧
+⏳Uptime: *%uptime*
+🗂Registrasi: *%rtotalreg user*
+📁Belum Registrasi: *%totalreg user*
+⚠️Mode: *${global.opts["self"] ? "Self" : "Publik"}*
+📊Database: *MongoDB*
 `,
-  header: "╔─═⊱ 「 *%category* 」─═⬣",
-  body: "║⿻ %cmd",
-  footer: "┗━━━━━━━━━━━━━━━━━━⬣",
-  after: ``,
+  header: "┌──⭓ *%category*",
+  body: "│⎚ %cmd",
+  footer: "└───────⭓",
+  after: `│`,
 };
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   let tags = {
@@ -46,112 +44,6 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     tools: "MENU TOOLS",
     info: "MENU INFO",
   };
-  let teks = `${args[0]}`.toLowerCase();
-  let arrayMenu = [
-    "all",
-    "ai",
-    "main",
-    "anonymous",
-    "internet",
-    "downloader",
-    "database",
-    "game",
-    "rpg",
-    "owner",
-    "xp",
-    "sticker",
-    "jadian",
-    "islami",
-    "group",
-    "tools",
-    "info",
-  ];
-  if (!arrayMenu.includes(teks)) teks = "404";
-  if (teks == "all")
-    tags = {
-      main: "MENU UTAMA",
-      ai: "AI MENU",
-      anonymous: "MENU ANONYMOUS",
-      internet: "MENU INTERNET",
-      downloader: "MENU DOWNLOADER",
-      database: "MENU DATABASE",
-      game: "MENU GAME",
-      rpg: "MENU RPG",
-      owner: "MENU OWNER",
-      xp: "MENU XP",
-      sticker: "MENU STIKER",
-      jadian: "MENU JADIAN",
-      audio: "MENU AUDIO",
-      islami: "MENU ISLAMI",
-      group: "MENU GROUP",
-      tools: "MENU TOOLS",
-      info: "MENU INFO",
-      randomimg: "MENU IMAGE",
-    };
-  if (teks == "ai")
-    tags = {
-      ai: "AI MENU",
-    };
-  if (teks == "anonymous")
-    tags = {
-      anonymous: "MENU ANONYMOUS",
-    };
-  if (teks == "internet")
-    tags = {
-      internet: "MENU INTERNET",
-    };
-  if (teks == "downloader")
-    tags = {
-      downloader: "MENU DOWNLOADER",
-    };
-  if (teks == "database")
-    tags = {
-      database: "MENU DATABASE",
-    };
-  if (teks == "nulis")
-    tags = {
-      nulis: "MENU NULIS",
-    };
-  if (teks == "game")
-    tags = {
-      game: "MENU GAME",
-    };
-  if (teks == "rpg")
-    tags = {
-      rpg: "MENU RPG",
-    };
-  if (teks == "owner")
-    tags = {
-      owner: "MENU OWNER",
-    };
-  if (teks == "xp")
-    tags = {
-      xp: "MENU XP",
-    };
-  if (teks == "sticker")
-    tags = {
-      sticker: "MENU STIKER",
-    };
-  if (teks == "jadian")
-    tags = {
-      jadian: "MENU JADIAN",
-    };
-  if (teks == "islami")
-    tags = {
-      islami: "MENU ISLAMI",
-    };
-  if (teks == "group")
-    tags = {
-      group: "MENU GROUP",
-    };
-  if (teks == "tools")
-    tags = {
-      tools: "MENU TOOLS",
-    };
-  if (teks == "info")
-    tags = {
-      info: "MENU INFO",
-    };
 
   try {
     let package = JSON.parse(
@@ -168,10 +60,6 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       : conn.getName(m.sender);
     let d = new Date(new Date() + 3600000);
     let locale = "id";
-    // d.getTimeZoneOffset()
-    // Offset -420 is 18.00
-    // Offset    0 is  0.00
-    // Offset  420 is  7.00
     let weton = ["Pahing", "Pon", "Wage", "Kliwon", "Legi"][
       Math.floor(d / 84600000) % 5
     ];
@@ -220,56 +108,6 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
           enabled: !plugin.disabled,
         };
       });
-    if (teks == "404") {
-      let judul = `${global.ucapan}, ${name}
-
-╭──( *Info Pengguna* )
-║- Limit: *${limit}*
-│- Role: *${role}*
-║- Level: *${level}*
-│- Money: Rp.*${money}*
-┗━━━━━━━━━━━━━━━━━━⬣
-
-╭──( *Info Bot* )
-║- Hari: *${week} ${weton}*
-│- Tanggal: *${date}*
-║- Waktu: *${time}*
-┗━━━━━━━━━━━━━━━━━━⬣
-
-╭──( *Info Bot* )
-║- Uptime: *${uptime}*
-│- Registrasi: *${rtotalreg} user*
-║- Belum Registrasi: *${totalreg} user*
-│- Mode: *${global.opts["self"] ? "Self" : "publik"}*
-║- Database: *LocalDB*
-┗━━━━━━━━━━━━━━━━━━⬣
-
-╔─═⊱ *「 *MAIN MENU* 」* ─═⬣
-║⿻.menu all
-║⿻.menu ai
-║⿻.menu anonymous
-║⿻.menu internet
-║⿻.menu download
-║⿻.menu database
-║⿻.menu game
-║⿻.menu rpg
-║⿻.menu owner
-║⿻.menu xp
-║⿻.menu sticker
-║⿻.menu jadian
-║⿻.menu quotes
-║⿻.menu islami
-║⿻.menu group
-║⿻.menu tools
-║⿻.menu info
-┗━━━━━━━━━━━━━━━━━━⬣
-`;
-      return conn.sendMessageModify(m.chat, judul, m, {
-        ads: false,
-        largeThumb: true,
-        url: "https://chat.whatsapp.com/LMSaRzwUmYFAMDLV6mQnv7",
-      });
-    }
     let groups = {};
     for (let tag in tags) {
       groups[tag] = [];
@@ -368,8 +206,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       ),
       (_, name) => "" + replace[name]
     );
-    // conn.sendButton(m.chat, text.trim(), wm, `MENU`, `.menu`, m);
-    conn.sendMessageModify(m.chat, text, m, {
+    conn.sendMessageModify(m.chat, text.trim(), m, {
       ads: false,
       largeThumb: true,
       url: "https://chat.whatsapp.com/LMSaRzwUmYFAMDLV6mQnv7",
