@@ -43,6 +43,7 @@ DATABASE          : *LOCALDB*
     converter: "MENU CONVERTER",
     group: "MENU GROUP",
     tools: "MENU TOOLS",
+    special: "MENU SPECIAL",
   };
 
   try {
@@ -219,7 +220,7 @@ DATABASE          : *LOCALDB*
   }
 };
 handler.help = ["menu", "help", "?"];
-handler.tags = ["main"];
+handler.tags = ["special"];
 handler.command = /^(m(enu)?|help|\?)$/i;
 handler.owner = false;
 handler.mods = false;
