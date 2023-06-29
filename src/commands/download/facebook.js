@@ -3,7 +3,7 @@ let handler = async (m, { conn, args }) => {
   if (!args[0]) throw "Masukan urlnya";
   let json = await api.fbdl(args[0]);
   if (!json.status) return conn.reply(m.chat, eror, m);
-  m.reply(wait);
+  await m.reply(wait);
   json.result.map(async (v) => {
     conn.sendFile(
       m.chat,

@@ -2,9 +2,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) throw `!Input URL`;
   try {
     let old = new Date();
-    let json = await Api.ig(args[0]);
+    let json = await api.ig(args[0]);
     if (!json.status) return conn.reply(m.chat, eror, m);
-    m.reply(wait);
+    await m.reply(wait);
     json.result.map(async (v) => {
       conn.sendFile(
         m.chat,
