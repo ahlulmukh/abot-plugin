@@ -37,13 +37,14 @@ DATABASE          : *LOCALDB*
     after: ``,
   };
   let tags = {
-    downloader: "MENU DOWNLOADER",
-    database: "MENU DATABASE",
-    owner: "MENU OWNER",
-    converter: "MENU CONVERTER",
-    group: "MENU GROUP",
-    tools: "MENU TOOLS",
-    special: "MENU SPECIAL",
+    downloader: "DOWNLOADER",
+    database: "DATABASE",
+    owner: "OWNER",
+    converter: "CONVERTER",
+    group: "GROUP",
+    tools: "TOOLS",
+    special: "SPECIAL",
+    relationship: "RELATIONSHIP",
   };
 
   try {
