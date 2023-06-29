@@ -31,27 +31,17 @@ USER BELUM DAFTAR : *%totalreg user*
 MODE              : *${global.opts["self"] ? "Self" : "Publik"}*
 DATABASE          : *LOCALDB*
   `,
-    header: "╭──✎『%category』",
+    header: "╭──✎『 %category 』",
     body: "│✎ %cmd",
     footer: "╰─────────❍",
     after: ``,
   };
   let tags = {
-    anonymous: "MENU ANONYMOUS",
-    ai: "AI MENU",
-    internet: "MENU INTERNET",
     downloader: "MENU DOWNLOADER",
     database: "MENU DATABASE",
-    game: "MENU GAME",
-    rpg: "MENU RPG",
     owner: "MENU OWNER",
-    xp: "MENU XP",
-    sticker: "MENU STIKER",
-    jadian: "MENU JADIAN",
-    islami: "MENU ISLAMI",
+    converter: "MENU CONVERTER",
     group: "MENU GROUP",
-    tools: "MENU TOOLS",
-    info: "MENU INFO",
   };
 
   try {

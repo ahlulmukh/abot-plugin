@@ -32,7 +32,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   }
 };
 handler.help = ["sticker"];
-handler.tags = ["sticker"];
+handler.tags = ["converter"];
 handler.command = /^(s|sticker|stiker|sgif)$/i;
 
 module.exports = handler;
