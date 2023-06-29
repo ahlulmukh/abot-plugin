@@ -7,7 +7,7 @@ let totalf = Object.values(global.plugins).filter(
   (v) => v.help && v.tags
 ).length;
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
-  let { exp, limit, age, money, level, role, registered } =
+  let { exp, limit, premium, premiumTime, money, level, role, registered } =
     global.db.data.users[m.sender];
 
   let name = registered
@@ -20,10 +20,13 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
 
 Bila ingin sewa bot atau membeli premium silahkan hubungi owner.
 ━━━━━━━━━━━━━━━━━━━
-LIMIT : *%limit*
-ROLE  : *%role*
-LEVEL : *%level*
-MONEY : *%money*
+LIMIT   : ${premium ? `Infinity` : `${limit}`}
+PREMIUM : ${
+      premium ? `${conn.msToDate(premiumTime - new Date() * 1)}` : "Gratisan"
+    }
+ROLE    : *%role*
+LEVEL   : *%level*
+MONEY   : *%money*
 ━━━━━━━━━━━━━━━━━━━
 UPTIME            : *%uptime*
 USER TERDAFTAR    : *%rtotalreg user*
