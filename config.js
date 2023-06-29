@@ -1,7 +1,12 @@
 let fs = require("fs");
 let chalk = require("chalk");
 global.owner = JSON.parse(fs.readFileSync("./src/json/owner.json"));
-
+global.APIKeys = {
+  xzn: {
+    URI: "https://xzn.wtf",
+    Key: "ahmuq",
+  },
+};
 // Put your number to folder /src/owner.json // Want some help?
 global.api = new (require("./src/lib/lib.api"))();
 global.Func = new (require("./src/lib/lib.function2"))();

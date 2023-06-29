@@ -6,11 +6,19 @@ let moment = require("moment-timezone");
 let totalf = Object.values(global.plugins).filter(
   (v) => v.help && v.tags
 ).length;
-let nom = 1;
-const defaultMenu = {
-  before: `
+let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
+  let { exp, limit, age, money, level, role, registered } =
+    global.db.data.users[m.sender];
 
-Bila ingin sewa bot atau membeli premium/vip silahkan hubungi owner.
+  let name = registered
+    ? global.db.data.users[m.sender].name
+    : conn.getName(m.sender);
+
+  const defaultMenu = {
+    before: `
+   ${global.ucapan}, ${name}
+
+Bila ingin sewa bot atau membeli premium silahkan hubungi owner.
 ━━━━━━━━━━━━━━━━━━━
 LIMIT : *%limit*
 ROLE  : *%role*
@@ -22,13 +30,12 @@ USER TERDAFTAR    : *%rtotalreg user*
 USER BELUM DAFTAR : *%totalreg user*
 MODE              : *${global.opts["self"] ? "Self" : "Publik"}*
 DATABASE          : *LOCALDB*
-`,
-  header: "╭──✎『%category』",
-  body: "│✎ %cmd",
-  footer: "╰─────────❍",
-  after: ``,
-};
-let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
+  `,
+    header: "╭──✎『%category』",
+    body: "│✎ %cmd",
+    footer: "╰─────────❍",
+    after: ``,
+  };
   let tags = {
     anonymous: "MENU ANONYMOUS",
     ai: "AI MENU",
@@ -208,7 +215,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       ),
       (_, name) => "" + replace[name]
     );
-    conn.sendMessageModify(m.chat, text.trim(), m, {
+
+    let menu = text.trim();
+    conn.sendMessageModify(m.chat, Func.Styles(menu), m, {
       ads: false,
       largeThumb: true,
       url: "https://chat.whatsapp.com/LMSaRzwUmYFAMDLV6mQnv7",
@@ -243,51 +252,4 @@ function clockString(ms) {
   let m = isNaN(ms) ? "--" : Math.floor(ms / 60000) % 60;
   let s = isNaN(ms) ? "--" : Math.floor(ms / 1000) % 60;
   return [h, m, s].map((v) => v.toString().padStart(2, 0)).join(":");
-}
-function ucapan() {
-  const time = moment.tz("Asia/Jakarta").format("HH");
-  res = "Selamat dinihari";
-  if (time >= 4) {
-    res = "Selamat pagi, semangat menjalankan aktifitas.";
-  }
-  if (time > 10) {
-    res = "Selamat siang, jangan lupa minum yang banyak.";
-  }
-  if (time >= 15) {
-    res = "Selamat sore";
-  }
-  if (time >= 18) {
-    res = "Selamat malam, jangan lupa tidur";
-  }
-  return res;
-}
-function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())];
-}
-function thumbnya() {
-  const time = moment.tz("Asia/Jakarta").format("HH");
-  //res = "https://telegra.ph/file/17699a0df2cb4adcf1ab3.jpg"
-  res =
-    "https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=800&fontsize=100&fillTextType=1&fillTextPattern=Warning!&fillColor1Color=%23ffffff&fillColor2Color=%23ffffff&fillColor3Color=%23ffffff&fillColor4Color=%23ffffff&fillColor5Color=%23ffffff&fillColor6Color=%23ffffff&fillColor7Color=%23ffffff&fillColor8Color=%23ffffff&fillColor9Color=%23ffffff&fillColor10Color=%23ffffff&fillOutlineColor=%23ffffff&fillOutline2Color=%23ffffff&backgroundColor=%23101820&text=Selamat+Dinihari";
-  if (time >= 4) {
-    //res = "https://telegra.ph/file/1755d29aa25fa31114a8d.jpg"
-    res =
-      "https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=800&fontsize=100&fillTextType=1&fillTextPattern=Warning!&fillColor1Color=%23ffffff&fillColor2Color=%23ffffff&fillColor3Color=%23ffffff&fillColor4Color=%23ffffff&fillColor5Color=%23ffffff&fillColor6Color=%23ffffff&fillColor7Color=%23ffffff&fillColor8Color=%23ffffff&fillColor9Color=%23ffffff&fillColor10Color=%23ffffff&fillOutlineColor=%23ffffff&fillOutline2Color=%23ffffff&backgroundColor=%23101820&text=Selamat+Pagi";
-  }
-  if (time > 10) {
-    // res = "https://telegra.ph/file/6f56042e46beec03644c1.jpg"
-    res =
-      "https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=800&fontsize=100&fillTextType=1&fillTextPattern=Warning!&fillColor1Color=%23ffffff&fillColor2Color=%23ffffff&fillColor3Color=%23ffffff&fillColor4Color=%23ffffff&fillColor5Color=%23ffffff&fillColor6Color=%23ffffff&fillColor7Color=%23ffffff&fillColor8Color=%23ffffff&fillColor9Color=%23ffffff&fillColor10Color=%23ffffff&fillOutlineColor=%23ffffff&fillOutline2Color=%23ffffff&backgroundColor=%23101820&text=Selamat+Siang";
-  }
-  if (time >= 15) {
-    //res = "https://telegra.ph/file/1b3a9f4ecdbcabec4564d.jpg"
-    res =
-      "https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=800&fontsize=100&fillTextType=1&fillTextPattern=Warning!&fillColor1Color=%23ffffff&fillColor2Color=%23ffffff&fillColor3Color=%23ffffff&fillColor4Color=%23ffffff&fillColor5Color=%23ffffff&fillColor6Color=%23ffffff&fillColor7Color=%23ffffff&fillColor8Color=%23ffffff&fillColor9Color=%23ffffff&fillColor10Color=%23ffffff&fillOutlineColor=%23ffffff&fillOutline2Color=%23ffffff&backgroundColor=%23101820&text=Selamat+Sore";
-  }
-  if (time >= 18) {
-    //res = "https://telegra.ph/file/4785affdb1c08575c598a.jpg"
-    res =
-      "https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=800&fontsize=100&fillTextType=1&fillTextPattern=Warning!&fillColor1Color=%23ffffff&fillColor2Color=%23ffffff&fillColor3Color=%23ffffff&fillColor4Color=%23ffffff&fillColor5Color=%23ffffff&fillColor6Color=%23ffffff&fillColor7Color=%23ffffff&fillColor8Color=%23ffffff&fillColor9Color=%23ffffff&fillColor10Color=%23ffffff&fillOutlineColor=%23ffffff&fillOutline2Color=%23ffffff&backgroundColor=%23101820&text=Selamat+Malam";
-  }
-  return res;
 }
