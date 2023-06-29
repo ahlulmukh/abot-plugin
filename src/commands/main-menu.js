@@ -45,6 +45,8 @@ DATABASE          : *LOCALDB*
     tools: "TOOLS",
     special: "SPECIAL",
     relationship: "RELATIONSHIP",
+    anonymous: "ANONYMOUS",
+    userinfo: "USER",
   };
 
   try {
