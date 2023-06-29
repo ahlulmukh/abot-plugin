@@ -50,6 +50,7 @@ DATABASE          : *LOCALDB*
     relationship: "RELATIONSHIP",
     anonymous: "ANONYMOUS",
     userinfo: "USER",
+    rpg: "RPG",
   };
 
   try {
