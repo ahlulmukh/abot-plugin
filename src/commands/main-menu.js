@@ -42,6 +42,7 @@ DATABASE          : *LOCALDB*
     owner: "MENU OWNER",
     converter: "MENU CONVERTER",
     group: "MENU GROUP",
+    tools: "MENU TOOLS",
   };
 
   try {
