@@ -8,23 +8,25 @@ let totalf = Object.values(global.plugins).filter(
 ).length;
 let nom = 1;
 const defaultMenu = {
-  before: `𝗜𝗡𝗙𝗢 𝗣𝗘𝗡𝗚𝗚𝗨𝗡𝗔
-🎫Limit: *%limit*
-🥋Role: *%role*
-🎚Level: *%level*
-💵Money: *%money*
+  before: `
 
-𝗜𝗡𝗙𝗢 𝗕𝗢𝗧
-⏳Uptime: *%uptime*
-🗂Registrasi: *%rtotalreg user*
-📁Belum Registrasi: *%totalreg user*
-⚠️Mode: *${global.opts["self"] ? "Self" : "Publik"}*
-📊Database: *MongoDB*
+Bila ingin sewa bot atau membeli premium/vip silahkan hubungi owner.
+━━━━━━━━━━━━━━━━━━━
+LIMIT : *%limit*
+ROLE  : *%role*
+LEVEL : *%level*
+MONEY : *%money*
+━━━━━━━━━━━━━━━━━━━
+UPTIME            : *%uptime*
+USER TERDAFTAR    : *%rtotalreg user*
+USER BELUM DAFTAR : *%totalreg user*
+MODE              : *${global.opts["self"] ? "Self" : "Publik"}*
+DATABASE          : *LOCALDB*
 `,
-  header: "┌──⭓ *%category*",
-  body: "│⎚ %cmd",
-  footer: "└───────⭓",
-  after: `│`,
+  header: "╭──✎『%category』",
+  body: "│✎ %cmd",
+  footer: "╰─────────❍",
+  after: ``,
 };
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   let tags = {
@@ -246,16 +248,16 @@ function ucapan() {
   const time = moment.tz("Asia/Jakarta").format("HH");
   res = "Selamat dinihari";
   if (time >= 4) {
-    res = "Selamat pagi, jangan lupa sahurnya";
+    res = "Selamat pagi, semangat menjalankan aktifitas.";
   }
   if (time > 10) {
-    res = "Selamat siang, semangat ya puasanya ";
+    res = "Selamat siang, jangan lupa minum yang banyak.";
   }
   if (time >= 15) {
-    res = "Selamat sore, selamat ngabuburit";
+    res = "Selamat sore";
   }
   if (time >= 18) {
-    res = "Selamat malam, jangan lupa tadarus dan berdoa";
+    res = "Selamat malam, jangan lupa tidur";
   }
   return res;
 }
