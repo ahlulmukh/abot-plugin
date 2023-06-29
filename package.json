@@ -16,6 +16,7 @@
     "cfonts": "^3.2.0",
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.12",
+    "chokidar": "^3.5.3",
     "fluent-ffmpeg": "^2.1.2",
     "human-readable": "^0.2.1",
     "jimp": "^0.16.13",
