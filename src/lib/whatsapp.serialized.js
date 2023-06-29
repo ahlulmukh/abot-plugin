@@ -35,6 +35,11 @@ const store = makeInMemoryStore({
   logger: pino().child({ level: "silent", stream: "store" }),
 });
 
+store.readFromFile("./session/ahmuq_store.json");
+setInterval(() => {
+  store.writeToFile("./session/nahmuq_store.json");
+}, 10_000);
+
 exports.makeWASocket = (connectionOptions, options = {}) => {
   let conn = (global.opts["legacy"] ? makeWALegacySocket : makeWASocket)(
     connectionOptions
