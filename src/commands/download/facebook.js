@@ -1,8 +1,17 @@
 let handler = async (m, { conn, args }) => {
+  let old = new Date();
   if (!args[0]) throw "Masukan urlnya";
   let json = await api.fbdl(args[0]);
+  if (!json.status) return conn.reply(m.chat, eror, m);
+  m.reply(wait);
   json.result.map(async (v) => {
-    conn.sendFile(m.chat, v, "", `Nih Medianya`, m);
+    conn.sendFile(
+      m.chat,
+      v,
+      "",
+      `🍟 *Fetching* : ${(new Date() - old) * 1} ms`,
+      m
+    );
     await conn.delay(1500);
   });
 };
