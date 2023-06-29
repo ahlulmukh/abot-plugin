@@ -5,6 +5,7 @@ global.owner = JSON.parse(fs.readFileSync("./src/json/owner.json"));
 // Put your number to folder /src/owner.json // Want some help?
 global.api = new (require("./src/lib/lib.api"))();
 global.Func = new (require("./src/lib/lib.function2"))();
+global.scrap = new (require("./src/lib/lib.scraper"))();
 global.wait = "*Sedang Di proses*";
 global.eror = "*Maaf fitur sedang error,cobalah lain kali!*";
 
