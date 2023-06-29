@@ -51,6 +51,7 @@ DATABASE          : *LOCALDB*
     anonymous: "ANONYMOUS",
     userinfo: "USER",
     rpg: "RPG",
+    game: "GAME",
   };
 
   try {
