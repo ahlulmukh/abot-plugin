@@ -27,8 +27,8 @@ global.nomorown = "628126915328";
 global.benar = "*Benar✅*";
 global.salah = "*Salah❌*";
 global.dikit = "*dikit lagi, semangat ya :')*";
-global.min_reward = 100000;
-global.max_reward = 500000;
+global.min_reward = 1000;
+global.max_reward = 5000;
 
 global.multiplier = 100; // The higher, The harder levelup
 
