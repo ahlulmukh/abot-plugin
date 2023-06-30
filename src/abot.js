@@ -703,11 +703,11 @@ module.exports = {
                         groupMetadata.desc ? groupMetadata.desc : ""
                       )
                   : chat.sBye || this.bye || conn.bye || "Bye, @user!"
-              ).replace("@user", await this.getName(user));
+              ).replace("@user", "@" + participants[0].split("@")[0]);
               await this.sendMessageModify(id, text, null, {
                 ads: true,
                 largeThumb: true,
-                title: "serialized WhatsApp Bot",
+                title: "WhatsApp Bot",
                 thumbnail: await getBuffer(
                   action === "add"
                     ? "https://telegra.ph/file/f88bc559017895c1dd31f.jpg"
