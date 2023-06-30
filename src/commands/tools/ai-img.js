@@ -2,7 +2,7 @@ let handler = async (m, { text, conn, usedPrefix, args, command }) => {
   try {
     if (!text)
       return m.reply(
-        `Membuat gambar dari AI.\n\nContoh:\n${prefix}${command} Wooden house on snow mountain`
+        `Membuat gambar dari AI.\n\nContoh:\n${usedPrefix}${command} Wooden house on snow mountain`
       );
     let result = await api.dalle(text);
     conn.sendFile(m.chat, result, "", text, m);
