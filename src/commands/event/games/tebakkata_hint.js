@@ -13,4 +13,5 @@ let handler = async (m, { conn }) => {
 };
 handler.command = /^teka$/i;
 handler.limit = true;
+handler.group = true;
 module.exports = handler;
