@@ -1,7 +1,7 @@
 let handler = async (m, { text, conn, usedPrefix, args, command }) => {
   try {
     if (!text)
-      return reply(
+      return m.reply(
         `Membuat gambar dari AI.\n\nContoh:\n${prefix}${command} Wooden house on snow mountain`
       );
     let result = await api.dalle(text);
