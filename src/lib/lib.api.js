@@ -46,6 +46,13 @@ module.exports = class NeoxrApi {
     return json;
   };
 
+  ytVideo = async (url) => {
+    let json = await fetchJson(
+      this.baseUrl + "/api/ytvideo?apikey=ahmuq&url=" + url
+    );
+    return json;
+  };
+
   spotifySearch = async (text) => {
     let json = await fetchJson(
       this.baseUrl + "/api/spotifysearch?apikey=ahmuq&query=" + text

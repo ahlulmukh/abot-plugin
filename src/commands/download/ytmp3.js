@@ -10,7 +10,7 @@ let handler = async (m, { conn, args }) => {
     "https://yt.nxr.my.id/yt2?url=" + args[0] + "&type=audio"
   );
   if (!json.status || !json.data.url) return conn.reply(m.chat, eror, m);
-  m.reply(wait);
+  await m.reply(wait);
   let caption = `乂  *YT AUDIO*\n\n`;
   caption += `	◦  *Title* : ${json.title}\n`;
   caption += `	◦  *Size* : ${json.data.size}\n`;

@@ -352,6 +352,40 @@
 
   global.reloadHandler();
 
+  // Auto Clear TMP
+  const tmpFolderPath = "tmp"; // Ganti dengan jalur folder "tmp" Anda
+  setInterval(() => {
+    fs.readdir(tmpFolderPath, (err, files) => {
+      if (err) {
+        console.error("Error reading directory:", err);
+        return;
+      }
+
+      const currentTime = new Date();
+      const expirationTime = new Date(currentTime.getTime() - 3 * 60 * 1000); // Hapus file yang berumur lebih dari 3 menit
+
+      files.forEach((file) => {
+        const filePath = path.join(tmpFolderPath, file);
+        fs.stat(filePath, (err, stats) => {
+          if (err) {
+            console.error("Error retrieving file stats:", err);
+            return;
+          }
+
+          if (stats.isFile() && stats.atime < expirationTime) {
+            fs.unlink(filePath, (err) => {
+              if (err) {
+                console.error("Error deleting file:", err);
+              } else {
+                console.log("File deleted:", filePath);
+              }
+            });
+          }
+        });
+      });
+    });
+  }, 5 * 60 * 1000);
+
   // Quick Test
   async function _quickTest() {
     let test = await Promise.all(

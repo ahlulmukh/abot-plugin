@@ -6,24 +6,23 @@ let handler = async (m, { conn, args }) => {
     )
   )
     return conn.reply(m.chat, "youtube only", m);
-  const json = await Func.fetchJson(
-    "https://yt.nxr.my.id/yt2?url=" + args[0] + "&type=video"
-  );
-  if (!json.status || !json.data.url) return conn.reply(m.chat, eror, m);
+  const json = await api.ytVideo(args[0]);
+  if (!json.status) return conn.reply(m.chat, eror, m);
   await m.reply(wait);
   let caption = `乂  *YT VIDEO*\n\n`;
-  caption += `	◦  *Title* : ${json.title}\n`;
-  caption += `	◦  *Channel* : ${json.channel}\n`;
-  caption += `	◦  *Published* : ${json.publish}\n`;
-  caption += `	◦  *views* : ${json.views}\n\n`;
+  caption += `	◦  *Title* : ${json.result.title}\n`;
+  caption += `	◦  *Channel* : ${json.result.uploader}\n`;
+  caption += `	◦  *Duration* : ${json.result.duration}\n`;
+  caption += `	◦  *Size* : ${json.result.link.size}\n`;
+  caption += `	◦  *views* : ${json.result.view}\n\n`;
   caption += global.footer;
   conn
     .sendMessageModify(m.chat, caption, m, {
       largeThumb: true,
-      thumbnail: await Func.fetchBuffer(json.thumbnail),
+      thumbnail: await Func.fetchBuffer(json.result.thumbnail),
     })
     .then(async () => {
-      conn.sendFile(m.chat, json.data.url, "", "", m);
+      conn.sendFile(m.chat, json.result.link.link, "", "", m);
     });
 };
 handler.help = ["ytmp4"];
