@@ -42,6 +42,7 @@ DATABASE          : *LOCALDB*
   let tags = {
     downloader: "DOWNLOADER",
     database: "DATABASE",
+    information: "INFORMASI",
     owner: "OWNER",
     converter: "CONVERTER",
     group: "GROUP",
