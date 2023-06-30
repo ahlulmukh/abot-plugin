@@ -278,8 +278,8 @@
     return true;
   };
 
-  let pluginFolder = path.join(__dirname, "src", "commands");
-  let pluginFilter = (filename) => /\.js$/.test(filename);
+  const pluginFolder = path.join(__dirname, "src", "commands");
+  const pluginFilter = (filename) => /\.js$/.test(filename);
 
   global.plugins = {};
 
@@ -306,40 +306,37 @@
 
   console.log(Object.keys(global.plugins));
 
-  global.reload = (_ev, filename) => {
-    const pluginPath = path.join(pluginFolder, filename);
-    const pluginName = path.relative(pluginFolder, pluginPath);
-    if (pluginFilter(filename)) {
-      if (pluginPath in require.cache) {
-        delete require.cache[pluginPath];
-        if (fs.existsSync(pluginPath))
-          conn.logger.info(`re require plugin '${pluginName}'`);
-        else {
-          conn.logger.warn(`deleted plugin '${pluginName}'`);
-          return delete global.plugins[pluginName];
-        }
-      } else conn.logger.info(`requiring new plugin '${pluginName}'`);
-      let err = syntaxerror(fs.readFileSync(pluginPath), filename);
-      if (err)
-        conn.logger.error(`syntax error while loading '${pluginName}'\n${err}`);
-      else {
-        try {
-          global.plugins[pluginName] = require(pluginPath);
-        } catch (e) {
-          conn.logger.error(e);
-        } finally {
-          global.plugins = Object.fromEntries(
-            Object.entries(global.plugins).sort(([a], [b]) =>
-              a.localeCompare(b)
-            )
-          );
-        }
+  const fileWatcher = chokidar.watch(pluginFolder, {
+    persistent: true,
+    ignoreInitial: true,
+  });
+
+  fileWatcher
+    .on("add", (filePath) => onFileAddedOrModified(filePath))
+    .on("change", (filePath) => onFileAddedOrModified(filePath))
+    .on("unlink", (filePath) => onFileDeleted(filePath));
+
+  const onFileAddedOrModified = (filePath) => {
+    if (pluginFilter(path.basename(filePath))) {
+      const pluginName = path.relative(pluginFolder, filePath);
+      try {
+        delete require.cache[require.resolve(filePath)];
+        const plugin = require(filePath);
+        global.plugins[pluginName] = plugin;
+        console.log(`Added or modified plugin: ${pluginName}`);
+      } catch (e) {
+        conn.logger.error(e);
       }
     }
   };
 
-  Object.freeze(global.reload);
-  fs.watch(pluginFolder, { recursive: true }, global.reload);
+  const onFileDeleted = (filePath) => {
+    if (pluginFilter(path.basename(filePath))) {
+      const pluginName = path.relative(pluginFolder, filePath);
+      delete global.plugins[pluginName];
+      console.log(`Deleted plugin: ${pluginName}`);
+    }
+  };
 
   global.reloadHandler();
 
