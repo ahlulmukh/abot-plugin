@@ -37,7 +37,7 @@ const store = makeInMemoryStore({
 
 store.readFromFile("./session/ahmuq_store.json");
 setInterval(() => {
-  store.writeToFile("./session/nahmuq_store.json");
+  store.writeToFile("./session/ahmuq_store.json");
 }, 10_000);
 
 exports.makeWASocket = (connectionOptions, options = {}) => {
