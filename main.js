@@ -306,49 +306,40 @@
 
   console.log(Object.keys(global.plugins));
 
-  global.reload = (_ev, filePath) => {
-    const pluginPath = path.relative(pluginFolder, filePath);
-    const pluginName = path.join(
-      path.dirname(pluginPath),
-      path.basename(pluginPath, ".js")
-    );
-    if (pluginFilter(path.basename(filePath))) {
-      try {
-        delete require.cache[require.resolve(filePath)];
-        if (fs.existsSync(filePath))
+  global.reload = (_ev, filename) => {
+    const pluginPath = path.join(pluginFolder, filename);
+    const pluginName = path.relative(pluginFolder, pluginPath);
+    if (pluginFilter(filename)) {
+      if (pluginPath in require.cache) {
+        delete require.cache[pluginPath];
+        if (fs.existsSync(pluginPath))
           conn.logger.info(`re require plugin '${pluginName}'`);
         else {
           conn.logger.warn(`deleted plugin '${pluginName}'`);
           return delete global.plugins[pluginName];
         }
-      } catch (e) {
-        conn.logger.info(`requiring new plugin '${pluginName}'`);
-        let err = syntaxerror(fs.readFileSync(filePath), pluginName);
-        if (err)
-          conn.logger.error(
-            `syntax error while loading '${pluginName}'\n${err}`
+      } else conn.logger.info(`requiring new plugin '${pluginName}'`);
+      let err = syntaxerror(fs.readFileSync(pluginPath), filename);
+      if (err)
+        conn.logger.error(`syntax error while loading '${pluginName}'\n${err}`);
+      else {
+        try {
+          global.plugins[pluginName] = require(pluginPath);
+        } catch (e) {
+          conn.logger.error(e);
+        } finally {
+          global.plugins = Object.fromEntries(
+            Object.entries(global.plugins).sort(([a], [b]) =>
+              a.localeCompare(b)
+            )
           );
-        else {
-          try {
-            global.plugins[pluginName] = require(filePath);
-          } catch (e) {
-            conn.logger.error(e);
-          } finally {
-            global.plugins = Object.fromEntries(
-              Object.entries(global.plugins).sort(([a], [b]) =>
-                a.localeCompare(b)
-              )
-            );
-          }
         }
       }
     }
   };
 
   Object.freeze(global.reload);
-  chokidar
-    .watch(pluginFolder, { ignored: /(^|[/\\])\../ })
-    .on("all", global.reload);
+  fs.watch(pluginFolder, { recursive: true }, global.reload);
 
   global.reloadHandler();
 
