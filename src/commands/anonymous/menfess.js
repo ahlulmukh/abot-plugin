@@ -13,19 +13,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   teks = "Hai kamu menerima pesan Rahasia nih";
   teks += "\n\nDari : " + `*${text2}*`;
   teks += "\nIsi Pesan : " + `*${text3}*`;
-  conn.sendMessage(text1 + "@s.whatsapp.net", {
-    text: teks,
-    footer: "Menfess Chat by Ahmuq",
-    buttons: [
-      {
-        buttonId: `.menfesschat ${m.sender.split("@")[0]}`,
-        buttonText: { displayText: "Ajak Chat" },
-        type: 1,
-      },
-    ],
-    headerType: 1,
-    withTag: true,
-  });
+  conn.reply(text1 + "@s.whatsapp.net", teks);
   m.reply("*Done mengirim pesan menfess kepada " + text1 + "*");
 };
 
