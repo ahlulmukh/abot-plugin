@@ -155,9 +155,6 @@ ${
                   }*`
                 : ""
             }`,
-            wm,
-            "inventory",
-            usedPrefix + "inv",
             m
           );
         user.sword += 1;
