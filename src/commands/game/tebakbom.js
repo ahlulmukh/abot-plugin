@@ -53,6 +53,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 };
 handler.help = ["tebakbom"];
 handler.tags = ["game"];
+handler.limit = true;
 handler.command = /^(tebakbom|bomb)$/i;
 
 module.exports = handler;

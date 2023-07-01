@@ -44,6 +44,7 @@ Bonus: ${poin} XP
 handler.help = ["siapakahaku"];
 handler.tags = ["game"];
 handler.group = true;
+handler.limit = true;
 handler.command = /^siapa(kah)?aku/i;
 
 module.exports = handler;

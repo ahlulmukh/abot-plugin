@@ -44,5 +44,6 @@ handler.help = ["tebakkata"];
 handler.tags = ["game"];
 handler.command = /^tebakkata/i;
 handler.group = true;
+handler.limit = true;
 
 module.exports = handler;

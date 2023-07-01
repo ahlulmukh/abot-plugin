@@ -46,6 +46,7 @@ Bonus: ${poin} XP
 handler.help = ["caklontong"];
 handler.tags = ["game"];
 handler.group = true;
+handler.limit = true;
 handler.command = /^caklontong/i;
 
 module.exports = handler;
