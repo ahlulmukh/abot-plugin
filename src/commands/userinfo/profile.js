@@ -56,11 +56,11 @@ let handler = async (m, { conn, text }) => {
   │•> Premium: ${
     premium ? `${conn.msToDate(premiumTime - new Date() * 1)}` : "Gratisan"
   }
-  │•> Number: ${PhoneNumber("+" + who.replace("@s.whatsapp.net", "")).getNumber(
-    "international"
-  )}
+  │•> Number: ${PhoneNumber(
+    "+" + user.replace("@s.whatsapp.net", "")
+  ).getNumber("international")}
   │•> Umur: *${age == "-1" ? "Belum Daftar" : age}*
-  │•> Link: wa.me/${who.split`@`[0]}
+  │•> Link: wa.me/${user.split`@`[0]}
   │•> Level: *${level}*
   │•> Rank : *${role}*
   │•> Limit: *${limit}*
