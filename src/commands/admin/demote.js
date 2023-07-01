@@ -22,7 +22,7 @@ let handler = async (m, { teks, conn, isOwner, isAdmin, args }) => {
 };
 
 handler.help = ["demote"];
-handler.tags = ["admin"];
+handler.tags = ["admins"];
 handler.command = /^(demo?te|member|\↓)$/i;
 
 handler.group = true;

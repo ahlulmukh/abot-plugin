@@ -14,7 +14,7 @@ let handler = async (
     );
 };
 handler.help = ["setbye"];
-handler.tags = ["admin"];
+handler.tags = ["admins"];
 handler.command = /^(setbye|sbye)$/i;
 handler.admin = true;
 handler.group = true;

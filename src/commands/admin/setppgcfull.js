@@ -14,7 +14,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     throw `Reply image`;
   }
 };
-handler.tags = ["admin"];
+handler.tags = ["admins"];
 handler.help = ["setppgcfull"];
 handler.owner = true;
 handler.admin = true;

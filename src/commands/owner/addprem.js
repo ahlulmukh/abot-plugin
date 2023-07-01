@@ -17,7 +17,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
   } catch (e) {
   } finally {
-    let data = db.data.users[user];
+    let data = global.db.data.users[user];
     if (typeof data == "undefined")
       return conn.reply(m.chat, `Nomor tidak terdaftar didatabase`, m);
     var jumlahHari = 86400000 * parseInt(txt);

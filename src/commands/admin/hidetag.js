@@ -31,7 +31,7 @@ let handler = async (m, { conn, text, participants }) => {
   });
 };
 handler.help = ["hidetag"];
-handler.tags = ["admin"];
+handler.tags = ["admins"];
 handler.command = /^(pengumuman|announce|hiddentag|hidetag)$/i;
 
 handler.group = true;
