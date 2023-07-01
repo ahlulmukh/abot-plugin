@@ -67,12 +67,11 @@ let handler = async (
     conn.reply(m.chat, "Oteeeweehhh...", m).then(async () => {
       var jumlahHari = 86400000 * args[1];
       var now = new Date() * 1;
-      let b = namabot;
       if (now < global.db.data.chats[res].expired)
         global.db.data.chats[res].expired += jumlahHari;
       else global.db.data.chats[res].expired = now + jumlahHari;
       let teks =
-        `${namabot} adalah bot whatsapp yang dibangun dengan Nodejs dan menggunakan server yg lumayan kenceng tapi gak kenceng-kenceng banget :'v.\n\n${namabot} diundang oleh @${
+        `Abot adalah bot whatsapp yang dibangun dengan Nodejs dan menggunakan server yang lumayan cepet.\n\nAbot diundang oleh @${
           m.sender.split(`@`)[0]
         }\n\nKetik ${usedPrefix}menu untuk melihat daftar perintah\nBot akan keluar secara otomatis setelah *${msToDate(
           global.db.data.chats[res].expired - now
