@@ -83,9 +83,8 @@ let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
   }
 };
 handler.help = ["add"];
-handler.tags = ["group"];
+handler.tags = ["admin"];
 handler.command = /^(add|\+)$/i;
-
 handler.admin = true;
 handler.group = true;
 handler.botAdmin = true;

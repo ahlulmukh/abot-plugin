@@ -14,8 +14,9 @@ let handler = async (
     );
 };
 handler.help = ["setbye"];
-handler.tags = ["owner", "group"];
+handler.tags = ["admin"];
 handler.command = /^(setbye|sbye)$/i;
+handler.admin = true;
 handler.group = true;
 
 module.exports = handler;

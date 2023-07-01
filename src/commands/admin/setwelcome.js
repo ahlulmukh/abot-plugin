@@ -15,8 +15,9 @@ let handler = async (
     } hai, @user!\nSelamat datang di grup @subject\n\n@desc`;
 };
 handler.help = ["setwelcome"];
-handler.tags = ["owner", "group"];
+handler.tags = ["admin"];
 handler.command = /^(setwelcome|setw)$/i;
+handler.admin = true;
 handler.group = true;
 
 module.exports = handler;

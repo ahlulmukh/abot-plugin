@@ -1,4 +1,20 @@
-let handler = async (m, { conn, args, usedPrefix, DevMode }) => {
+let handler = async (m, { conn, args, usedPrefix, text }) => {
+  if (!text)
+    return conn.reply(
+      m.chat,
+      `Gunakan format ${usedPrefix}transfer <type> <jumlah> <@tag>\ncontoh penggunaan: *${usedPrefix}transfer money 100 @${
+        m.sender.split`@`[0]
+      }*\n\n*List yang bisa di transfer*\n${rpg.emoticon(
+        "money"
+      )}Money\n${rpg.emoticon("potion")}Potion\n${rpg.emoticon(
+        "sampah"
+      )}Sampah\n${rpg.emoticon("diamond")}Diamond\n${rpg.emoticon(
+        "common"
+      )}Common\n${rpg.emoticon("uncommon")}Uncommon\n${rpg.emoticon(
+        "mythic"
+      )}Mythic\n${rpg.emoticon("legendary")}Legendary`.trim(),
+      m
+    );
   if (args.length < 3) {
     return conn.reply(
       m.chat,
@@ -258,16 +274,7 @@ let handler = async (m, { conn, args, usedPrefix, DevMode }) => {
 handler.help = ["transfer"];
 handler.tags = ["rpg"];
 handler.command = /^(transfer|tf)$/i;
-handler.owner = false;
-handler.mods = false;
-handler.premium = false;
 handler.group = true;
-handler.private = false;
-handler.register = false;
-
-handler.admin = false;
-handler.botAdmin = false;
-
 handler.fail = null;
 handler.money = 0;
 

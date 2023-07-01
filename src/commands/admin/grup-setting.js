@@ -70,7 +70,7 @@ ${usedPrefix + command} buka
 };
 
 handler.help = ["grup"];
-handler.tags = ["group"];
+handler.tags = ["admin"];
 handler.command = /^(g(ro?up|c?)?)$/i;
 handler.group = true;
 handler.botAdmin = false;

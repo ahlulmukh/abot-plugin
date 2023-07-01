@@ -30,8 +30,8 @@ let handler = async (m, { conn, text, participants }) => {
     messageId: msg.key.id,
   });
 };
-handler.help = ["hidetag", "pengumuman"];
-handler.tags = ["group"];
+handler.help = ["hidetag"];
+handler.tags = ["admin"];
 handler.command = /^(pengumuman|announce|hiddentag|hidetag)$/i;
 
 handler.group = true;

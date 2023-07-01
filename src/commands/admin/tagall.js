@@ -14,9 +14,9 @@ let handler = async (m, { isOwner, isAdmin, conn, text, participants }) => {
   });
 };
 handler.help = ["tagall"];
-handler.tags = ["group"];
+handler.tags = ["admin"];
 handler.command = /^(t(agall)?)$/i;
-
 handler.group = true;
+handler.admin = true;
 
 module.exports = handler;

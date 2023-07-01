@@ -21,7 +21,7 @@ let handler = async (m, { teks, conn, isOwner, isAdmin, args }) => {
 };
 
 handler.help = ["kick"];
-handler.tags = ["group"];
+handler.tags = ["admin"];
 handler.command = /^(kic?k|remove|tendang|\-)$/i;
 
 handler.group = true;

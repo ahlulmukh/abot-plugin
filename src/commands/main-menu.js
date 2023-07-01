@@ -45,6 +45,7 @@ DATABASE          : *LOCALDB*
     information: "INFORMASI",
     owner: "OWNER",
     converter: "CONVERTER",
+    admin: "ADMIN TOOLS",
     group: "GROUP",
     tools: "TOOLS",
     special: "SPECIAL",
