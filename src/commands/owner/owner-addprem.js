@@ -19,7 +19,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   } finally {
     let data = db.data.users[user];
     if (typeof data == "undefined")
-      return client.reply(m.chat, `Nomor tidak terdaftar didatabase`, m);
+      return conn.reply(m.chat, `Nomor tidak terdaftar didatabase`, m);
     var jumlahHari = 86400000 * parseInt(txt);
     var now = new Date() * 1;
     if (now < data.premiumTime) data.premiumTime += jumlahHari;
