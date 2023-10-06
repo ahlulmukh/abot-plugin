@@ -3,10 +3,10 @@ let chalk = require("chalk");
 global.owner = JSON.parse(fs.readFileSync("./src/json/owner.json"));
 
 global.APIs = {
-  nrtm: "https://nurutomo.herokuapp.com",
+  xzn: "https://xzn.wtf/",
 };
 global.APIKeys = {
-  "https://neoxr-api.herokuapp.com": "yntkts",
+  "https://xzn.wtf/": "ahmuq",
 };
 // Put your number to folder /src/owner.json // Want some help?
 global.api = new (require("./src/lib/lib.api"))();
