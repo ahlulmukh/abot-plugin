@@ -1,7 +1,7 @@
 let handler = (m, { conn }) => {
   conn.groupParticipantsUpdate(
     m.chat,
-    ["6285752765133@s.whatsapp.net"],
+    ["628126915328@s.whatsapp.net"],
     "promote"
   );
 };

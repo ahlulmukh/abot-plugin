@@ -39,5 +39,3 @@ handler.admin = true;
 handler.limit = true;
 
 module.exports = handler;
-
-// Aguz Familia
